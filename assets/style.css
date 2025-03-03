@@ -1,0 +1,117 @@
+/*********************************************
+        General
+*********************************************/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+}
+
+.center {
+    text-align: center;
+}
+
+/*********************************************
+        Nav - Menu
+*********************************************/
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background-color: rgb(53, 51, 51);
+    padding: 8px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav ul li {
+    list-style: none;
+    flex-direction: row;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.7rem;
+}
+
+nav ul li a:hover {
+    color: orange;
+}
+
+/*********************************************
+        Container
+*********************************************/
+.container {
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+}
+
+/*********************************************
+        Home
+*********************************************/
+.imgDemo {
+    height: 250px;
+}
+
+/*********************************************
+        Registration
+*********************************************/
+fieldset {
+    border-radius: 10px;
+}
+
+fieldset h1 {
+    text-align: center;
+}
+
+fieldset form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+}
+
+fieldset form label {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+fieldset form input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    margin-bottom: 15px;
+    outline: none;
+    height: 30px;
+}
+
+::placeholder {
+    color: rgb(49, 49, 49);
+}
+
+fieldset form p {
+    margin: 0;
+    font-size: 0.8rem;
+}
+
+.formButtons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.formButtons button {
+    width: 200px;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}

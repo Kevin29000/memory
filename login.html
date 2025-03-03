@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory - Login</title>
+        <link rel="stylesheet" href="assets/style.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="registration.html">S'inscrire</a></li>
+                    <li><a href="login.html">Se connecter</a></li>
+                    <li><a href="">Profil</a></li>
+                    <li><a href="">Jouer</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                <fieldset>
+                    <h1>Se connecter</h1>
+                    <form action="" method="post">
+                        <label for="email">Entrez votre email</label>
+                        <input type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                        <div class="formButtons">
+                            <button type="submit">Valider</button>
+                            <button type="reset">Réinitialiser</button>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </main>
+    </body>
+</html>

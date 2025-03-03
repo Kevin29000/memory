@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Memory - Inscription</title>
+        <link rel="stylesheet" href="assets/style.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="registration.html">S'inscrire</a></li>
+                    <li><a href="login.html">Se connecter</a></li>
+                    <li><a href="">Profil</a></li>
+                    <li><a href="">Jouer</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="container">
+                <fieldset>
+                    <h1>Inscrivez-vous</h1>
+                    <form action="" method="get" id="registrationForm">
+                        <label for="username">Nom d'utilisateur</label>
+                        <!-- required pattern="[A-Za-z]{3,}" -->
+                        <input type="text" id="usernameRegistration" name="username" autofocus title="Vous devez saisir 3 caractères minimum" placeholder="3 caractères minimum">
+                        <label for="email">Entrez votre email</label>
+                        <!-- required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" -->
+                        <input type="email" id="email" name="email" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                        <label for="password">Mot de passe</label>
+                        <!-- required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" -->
+                        <input type="password" id="password" name="password" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                        <p>Au moins un symbole, un chiffre, ainsi que 6 caractères minimum</p>
+                        <div class="formButtons">
+                            <button id="btn">Valider</button>
+                            <button type="reset">Réinitialiser</button>
+                            <!-- <button id="btn">tester</button> -->
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </main>
+    </body>
+</html>
