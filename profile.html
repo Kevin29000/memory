@@ -16,7 +16,7 @@
                     <li><a href="registration.html">S'inscrire</a></li>
                     <li><a href="login.html">Se connecter</a></li>
                     <li><a href="profile.html">Profil</a></li>
-                    <li><a href="">Jouer</a></li>
+                    <li><a href="game.html">Jouer</a></li>
                 </ul>
             </nav>
         </header>
@@ -32,17 +32,26 @@
                     <p>Email :</p>
                     <p id="profilEmail"></p>
                     <p>Choix du Memory</p>
-                    <select name="" id="">
+                    <select name="" id="memoryProfileSelect">
                         <option value="">-- Selectionner un memory --</option>
                         <option value="dinosaures">Dinosaures</option>
-                        <option value=""></option>
+                        <option value="dinosauresAvecNom">Dinosaures avec nom</option>
+                        <option value="legume">Legumes</option>
+                        <option value="animaux">Animaux</option>
+                        <option value="chiens">Chiens</option>
+                        <option value="animauxDomestiques">Animaux domestiques</option>
+                        <option value="animauxAnimes">Animaux animes</option>
+                        <option value="alphabetScrabble">Alphabet - scrable</option>
                     </select>
-                        <img src="assets/images/dinosaures/memory_detail_dinosaures.png" alt="">
-                        <p>Taille du Memory</p>
+                    <div class="center">
+                        <img src="" alt="" id="memoryProfileImg">
+                    </div>
+                    <p>Taille du Memory</p>
                     <select name="" id="">
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                        <option value="">-- Selectionner une taille --</option>
+                        <option value="">4 * 3</option>
+                        <option value="">4 * 4</option>
+                        <option value="">4 * 5</option>
                     </select>
                     <button type="button" id="logout">Se déconnecter</button>
                 </fieldset>

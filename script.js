@@ -24,6 +24,12 @@ $(document).ready(function() {
             email: email,
             password: password
         };
+
+        // Vérifie si le username est déjà présent dans le localStorage
+        if (findUserByUsername(username)) {
+            alert(`Le nom d'utilisateur : ${username} est déjà utilisé !`);
+            return;
+        }
     
         // Vérifie si l'email est déjà présente dans le localStorage
         if (findUserByEmail(email)) {
@@ -43,6 +49,7 @@ $(document).ready(function() {
     
         localStorage.setItem(`user${userId}`, JSON.stringify(user));
         console.log(`Utilisateur ajouté : user${userId}`, JSON.stringify(user));
+        window.location.href = 'login.html';
         // Met à jour la valeur de userId pour la prochaine inscription
         localStorage.setItem('userId', userId);
     });
@@ -56,7 +63,7 @@ $(document).ready(function() {
     
         // console.log(email, password);
     
-        if(login(email, password)) {
+        if (login(email, password)) {
             console.log('User trouvé');
             $('#loginError').text('');
         } else {
@@ -83,8 +90,11 @@ $(document).ready(function() {
         validatePassword($(this).val());
     });
 
-    // Image lié au select du memory dans le profil
-    
+    // Attribuer une image pour chaque options du select du memory de Profil
+    $('#memoryProfileSelect').on('change', function() {
+        let val = $(this).val();
+        $('#memoryProfileImg').attr('src', `assets/images/${val}/memory_detail_${val}.png`);
+    });
 
 });
 
@@ -100,14 +110,28 @@ function login(email, password) {
             localStorage.setItem('currentUser', JSON.stringify(user));
             window.location.href = 'profile.html';
             return true;
-        } else {
-            return false;
         }
     }
+
+    return false;
+}
+
+function findUserByUsername(username) {
+    for (let i = 0; i < localStorage.length; i++) {
+        // Récupère la clé à l'index i dans le localSotrage
+        let key = localStorage.key(i);
+
+        // Prend le user lié à la clé
+        let user = JSON.parse(localStorage.getItem(key));
+
+        if (user.username === username) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function findUserByEmail(email) {
-    let foundUser = null;
     for (let i = 0; i < localStorage.length; i++) {
         // Récupère la clé à l'index i dans le localSotrage
         let key = localStorage.key(i);
@@ -117,10 +141,10 @@ function findUserByEmail(email) {
 
         if (user.email === email) {
             foundUser = user;
-            break;
+            return true;
         }
     }
-    return foundUser;
+    return false;
 }
 
 // Vérifie l'input username
