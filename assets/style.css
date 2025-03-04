@@ -123,3 +123,14 @@ fieldset form p {
     border: none;
     cursor: pointer;
 }
+
+/*********************************************
+        Login
+*********************************************/
+#loginError {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}

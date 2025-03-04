@@ -15,7 +15,7 @@
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="registration.html">S'inscrire</a></li>
                     <li><a href="login.html">Se connecter</a></li>
-                    <li><a href="">Profil</a></li>
+                    <li><a href="profile.html">Profil</a></li>
                     <li><a href="">Jouer</a></li>
                 </ul>
             </nav>
@@ -24,15 +24,16 @@
             <div class="container">
                 <fieldset>
                     <h1>Se connecter</h1>
-                    <form action="" method="post">
+                    <form id="loginForm">
                         <label for="email">Entrez votre email</label>
-                        <input type="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                        <input type="email" id="loginEmail" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Votre email" title="Le format de l'email n'est pas valide">
                         <label for="password">Mot de passe</label>
-                        <input type="password" required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                        <input type="password" id="loginPassword" required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
                         <div class="formButtons">
                             <button type="submit">Valider</button>
                             <button type="reset">Réinitialiser</button>
                         </div>
+                        <p id="loginError"></p>
                     </form>
                 </fieldset>
             </div>

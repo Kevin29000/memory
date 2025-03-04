@@ -15,7 +15,7 @@
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="registration.html">S'inscrire</a></li>
                     <li><a href="login.html">Se connecter</a></li>
-                    <li><a href="">Profil</a></li>
+                    <li><a href="profile.html">Profil</a></li>
                     <li><a href="">Jouer</a></li>
                 </ul>
             </nav>
@@ -24,23 +24,20 @@
             <div class="container">
                 <fieldset>
                     <h1>Inscrivez-vous</h1>
-                    <form action="" method="get" id="registrationForm">
+                    <form id="registrationForm">
                         <label for="username">Nom d'utilisateur</label>
-                        <!-- required pattern="[A-Za-z]{3,}" -->
                         <span>
-                            <input type="text" id="usernameRegistration" name="username" autofocus title="Vous devez saisir 3 caractères minimum" placeholder="3 caractères minimum">
+                            <input type="text" id="usernameRegistration" name="username" required pattern="[A-Za-z]{3,}" autofocus title="Vous devez saisir 3 caractères minimum" placeholder="3 caractères minimum">
                             <img src="assets/images/error.svg" alt="" id="usernameRegistrationImg" class="errorForm">
                         </span>
                         <label for="email">Entrez votre email</label>
-                        <!-- required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" -->
                         <span>
-                            <input type="email" id="emailRegistration" name="email" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                            <input type="email" id="emailRegistration" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" placeholder="Votre email" title="Le format de l'email n'est pas valide">
                             <img src="assets/images/error.svg" alt="" id="emailRegistrationImg" class="errorForm">
                         </span>
                         <label for="password">Mot de passe</label>
-                        <!-- required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" -->
                         <span>
-                            <input type="password" id="passwordRegistration" name="password" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                            <input type="password" id="passwordRegistration" name="password" required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
                             <img src="assets/images/error.svg" alt="" id="passwordRegistrationImg" class="errorForm">
                         </span>
                         <p>Au moins un symbole, un chiffre, ainsi que 6 caractères minimum</p>
