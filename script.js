@@ -1,5 +1,16 @@
 $(document).ready(function() {
 
+    // Charger le currentUser
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (currentUser) {
+        $('#profilUsername').text(currentUser.username);
+        $('#profilEmail').text(currentUser.email);
+    } else {
+        $('#profilUsername').text('...');
+        $('#profilEmail').text('...');
+    }
+
     // Inscription
     $('#registrationForm').on('submit', function(event) {
         event.preventDefault();
@@ -36,7 +47,30 @@ $(document).ready(function() {
         localStorage.setItem('userId', userId);
     });
 
-    // Vérification des inputs
+    // Login
+    $('#loginForm').on('submit', function(event) {
+        event.preventDefault();
+    
+        let email = $('#loginEmail').val();
+        let password = $('#loginPassword').val();
+    
+        // console.log(email, password);
+    
+        if(login(email, password)) {
+            console.log('User trouvé');
+            $('#loginError').text('');
+        } else {
+            $('#loginError').text('L\'email ou le mot de passe est incorrect !');
+        }
+    });
+
+    // Logout
+    $('#logout').on('click', function() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+    });
+
+    // Vérification des inputs de registrationForm
     $('#usernameRegistration').on('input', function() {
         validateUsername($(this).val());
     });
@@ -49,21 +83,8 @@ $(document).ready(function() {
         validatePassword($(this).val());
     });
 
-    // Login
-    $('#loginForm').on('submit', function(event) {
-        event.preventDefault();
+    // Image lié au select du memory dans le profil
     
-        let email = $('#loginEmail').val();
-        let password = $('#loginPassword').val();
-    
-        // console.log(email, password);
-    
-        if(login(email, password)) {
-            console.log('User trouvé');
-        } else {
-            $('#loginError').text('L\'email ou le mot de passe est incorrect !')
-        }
-    });
 
 });
 
@@ -77,7 +98,10 @@ function login(email, password) {
 
         if (user.email === email && user.password === password) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            break;
+            window.location.href = 'profile.html';
+            return true;
+        } else {
+            return false;
         }
     }
 }

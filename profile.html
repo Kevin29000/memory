@@ -22,10 +22,30 @@
         </header>
         <main>
             <div class="container">
-                <div>
-                    <p>Nom d'utilisateur : <span id="profilUsername"></span></p>
-                    <p>Email : <span id="profilEmail"></span></p>
-                </div>
+                <fieldset>
+                    <h1>Profil</h1>
+                    <div class="center">
+                        <img src="assets/images/question.svg" alt="" class="imgProfilQuestion">
+                    </div>
+                    <p>Nom d'utilisateur</p>
+                    <p id="profilUsername"></p>
+                    <p>Email :</p>
+                    <p id="profilEmail"></p>
+                    <p>Choix du Memory</p>
+                    <select name="" id="">
+                        <option value="">-- Selectionner un memory --</option>
+                        <option value="dinosaures">Dinosaures</option>
+                        <option value=""></option>
+                    </select>
+                        <img src="assets/images/dinosaures/memory_detail_dinosaures.png" alt="">
+                        <p>Taille du Memory</p>
+                    <select name="" id="">
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                    <button type="button" id="logout">Se déconnecter</button>
+                </fieldset>
             </div>
         </main>
     </body>
