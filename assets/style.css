@@ -78,6 +78,10 @@ fieldset form {
     padding: 30px;
 }
 
+fieldset form span {
+    flex-direction: row;
+}
+
 fieldset form label {
     font-size: 1.2rem;
     font-weight: bold;
@@ -87,10 +91,14 @@ fieldset form input {
     background: transparent;
     border: none;
     border-bottom: 1px solid black;
-    width: 100%;
+    width: 92%;
     margin-bottom: 15px;
     outline: none;
     height: 30px;
+}
+
+.errorForm {
+    height: 25px;
 }
 
 ::placeholder {

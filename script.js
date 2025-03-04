@@ -1,9 +1,9 @@
 $('#registrationForm').on('submit', function(event) {
     event.preventDefault();
 
-    let username = $('#username').val();
-    let email = $('#email').val();
-    let password = $('#password').val();
+    let username = $('#usernameRegistration').val();
+    let email = $('#emailRegistration').val();
+    let password = $('#passwordRegistration').val();
 
     let user = {
         username: username,
@@ -53,11 +53,54 @@ function findUserByEmail(email) {
 }
 
 
-
-$('#testInput').on('input', function() {
-    console.log($(this).val());
+// Vérifie l'input username
+$('#usernameRegistration').on('input', function() {
+    if ($(this).val().length >= 3) {
+        $('#usernameRegistrationImg').attr('src', 'assets/images/check.svg')
+    } else {
+        $('#usernameRegistrationImg').attr('src', 'assets/images/error.svg')
+    }
 });
 
+// Vérifie l'input email
+$('#emailRegistration').on('input', function() {
+    const email = $(this).val();
+
+    if (/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(email)) {
+        $('#emailRegistrationImg').attr('src', 'assets/images/check.svg')
+    } else {
+        $('#emailRegistrationImg').attr('src', 'assets/images/error.svg')
+    }
+    
+});
+
+// Vérifie l'input password
+$('#passwordRegistration').on('input', function() {
+    const password = $('#passwordRegistration').val();
+    // console.log('Le mdp est : '+ password);
+    let letters = password.split("");
+
+    let hasNumber = false;
+    let length = false;
+    let hasSpecialChar = false;
+
+    for (let i = 0; i < letters.length; i++) {
+        if (!isNaN(letters[i])) {
+            hasNumber = true;
+            // le ^ à cet endroit veut dire tout sauf min, maj, chiffre, donc un caractère spécial
+        } else if (/[^a-zA-Z0-9]/.test(letters[i])) {
+            hasSpecialChar = true;
+        } 
+    }
+
+    if (letters.length >= 6) {length = true}
+
+    if (hasNumber && length && hasSpecialChar) {
+        $('#passwordRegistrationImg').attr('src', 'assets/images/check.svg')
+    } else {
+        $('#passwordRegistrationImg').attr('src', 'assets/images/error.svg')
+    }
+});
 
 
 // let test = JSON.parse(localStorage.getItem('user1'));

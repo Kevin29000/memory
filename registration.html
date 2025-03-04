@@ -27,18 +27,26 @@
                     <form action="" method="get" id="registrationForm">
                         <label for="username">Nom d'utilisateur</label>
                         <!-- required pattern="[A-Za-z]{3,}" -->
-                        <input type="text" id="usernameRegistration" name="username" autofocus title="Vous devez saisir 3 caractères minimum" placeholder="3 caractères minimum">
+                        <span>
+                            <input type="text" id="usernameRegistration" name="username" autofocus title="Vous devez saisir 3 caractères minimum" placeholder="3 caractères minimum">
+                            <img src="assets/images/error.svg" alt="" id="usernameRegistrationImg" class="errorForm">
+                        </span>
                         <label for="email">Entrez votre email</label>
                         <!-- required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" -->
-                        <input type="email" id="email" name="email" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                        <span>
+                            <input type="email" id="emailRegistration" name="email" placeholder="Votre email" title="Le format de l'email n'est pas valide">
+                            <img src="assets/images/error.svg" alt="" id="emailRegistrationImg" class="errorForm">
+                        </span>
                         <label for="password">Mot de passe</label>
                         <!-- required pattern="^(?=.*\d)(?=.*[\W_]).{6,}$" -->
-                        <input type="password" id="password" name="password" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                        <span>
+                            <input type="password" id="passwordRegistration" name="password" placeholder="Votre mot de passe" title="Le format du mot de passe n'est pas valide">
+                            <img src="assets/images/error.svg" alt="" id="passwordRegistrationImg" class="errorForm">
+                        </span>
                         <p>Au moins un symbole, un chiffre, ainsi que 6 caractères minimum</p>
                         <div class="formButtons">
                             <button id="btn">Valider</button>
                             <button type="reset">Réinitialiser</button>
-                            <!-- <button id="btn">tester</button> -->
                         </div>
                     </form>
                 </fieldset>
