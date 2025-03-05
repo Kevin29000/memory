@@ -18,8 +18,8 @@ $(document).ready(function() {
 
     let images = [];
 
-    let rows = 6;
-    let columns = 6;
+    let rows = 4;
+    let columns = 4;
     let questionImgSrc = 'assets/images/question.svg';
 
     // Création du tableau pour une partie
