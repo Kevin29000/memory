@@ -1,36 +1,51 @@
 $(document).ready(function() {
+    $(document).on('keydown', function(event) {
+        if (event.code === 'Space' || event.key === ' ') {
+            event.preventDefault();
+            startGame();
+        }
+    });
+
     $('#startGameBtn').on('click', function() {
         startGame();
     });
 
-    // let images = [
-    //     'assets/images/dinosaures/1.jpg', 'assets/images/dinosaures/2.jpg', 'assets/images/dinosaures/3.jpg', 'assets/images/dinosaures/4.jpg',
-    //     'assets/images/dinosaures/5.jpg', 'assets/images/dinosaures/6.jpg', 'assets/images/dinosaures/7.jpg', 'assets/images/dinosaures/8.jpg',
-    //     'assets/images/dinosaures/9.jpg', 'assets/images/dinosaures/10.jpg'
-    // ];
-
     fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        // console.log(data.dinosaures);
-        images = data.dinosauresAvecNom;
-    })
+        .then(response => response.json())
+        .then(data => {
+            // console.log(data.dinosaures);
+            let memorySelected = localStorage.getItem('memorySelected');
+            images = data[memorySelected];
+        })
 
     let images = [];
 
-    let rows = 4;
-    let columns = 4;
+    let rows = localStorage.getItem('memorySize').split("")[0];
+    let columns = localStorage.getItem('memorySize').split("")[2];
     let questionImgSrc = 'assets/images/question.svg';
+    let nbImage = (rows * columns) / 2;
 
     // Création du tableau pour une partie
     function startGame() {
+        if (!images) alert('Vous devez choisir un type de memory !');
+
+        $('#gameScore').text('Score : 0');
+        $('#gameScore').show();
+
         let table = $('#gameTable');
         // Vide le tableau avant de relancer une game
         table.empty();
+        table.css('border', '2px solid black');
+        
+        // Vérifie que le nombre d'images disponible est supérieur au nombre d'images demandés
+        if (nbImage >= images.length) {
+            alert('Vous devez choisir une taille de memory adéquat');
+            return false;
+        }
 
         // Mélange avec 0.5 - Math.random(), c'est pour avoir une plage de -0.5 à 0.5, si inf à 0 alors A avant B, si sup à 0 alors A après B
         // prend les 8 premières images avec .slice(0, 8)
-        let selectedImages = images.sort(() => 0.5 - Math.random()).slice(0, 8);
+        let selectedImages = images.sort(() => 0.5 - Math.random()).slice(0, nbImage);
         // Duplique le tableau selectedImages
         let gameImages = [...selectedImages, ...selectedImages];
         // Mélange les images
@@ -47,11 +62,6 @@ $(document).ready(function() {
                 let td = $(`<td id="${imgIdex}" data-image="${imgSrc}"></td>`);
                 let img = $(`<img src='${questionImgSrc}' alt="hidden">`);
 
-                // Si imgScr est null ou undefined alors j'ignore
-                // if (!imgSrc) {
-                //     continue;
-                // }
-
                 td.append(img);
                 tr.append(td);
                 imgIdex++;
@@ -64,6 +74,7 @@ $(document).ready(function() {
     let firstClick = null;
     let secondClick = null;
     let lockBoard = false;
+    let score = 0;
     // Écoute des clicks sur la td du tableau
     $('#gameTable').on('click', 'td', function() {
         if (lockBoard) return; // Empêche de cliquer pendant une vérification
@@ -73,6 +84,11 @@ $(document).ready(function() {
         let clickedImg = $(this).data('image');
         // Affiche l'image réelle
         $(this).find('img').attr('src', clickedImg);
+
+        // Met le score à 0 pour un début de partie
+        if ($('#gameScore').text() === 'Score : 0') {
+            score = 0;
+        }
 
         if (!firstClick) {
             firstClick = $(this);
@@ -84,14 +100,19 @@ $(document).ready(function() {
                 if (firstClick.data('image') === secondClick.data('image')) {
                     // Trouvé, les cartes restent visibles
                     firstClick = secondClick = null;
+                    score++;
+                    $('#gameScore').text(`Score : ${score}`);
                 } else {
                     // Pas trouvé, les cartes se cachent
                     firstClick.find('img').attr('src', questionImgSrc);
                     secondClick.find('img').attr('src', questionImgSrc);
                     firstClick = secondClick = null;
+                    score++;
+                    $('#gameScore').text(`Score : ${score}`);
                 }
                 lockBoard = false;
             }, 1000);
         }
     });
+    
 });

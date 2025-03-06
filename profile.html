@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="assets/style.css">
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="script.js" defer></script>
-        <script src="game.js"></script>
     </head>
     <body>
         <header>
@@ -23,38 +22,38 @@
         </header>
         <main>
             <div class="container">
-                <fieldset>
+                <fieldset class="profile">
                     <h1>Profil</h1>
                     <div class="center">
                         <img src="assets/images/question.svg" alt="" class="imgProfilQuestion">
                     </div>
-                    <p>Nom d'utilisateur</p>
-                    <p id="profilUsername"></p>
-                    <p>Email :</p>
-                    <p id="profilEmail"></p>
-                    <p>Choix du Memory</p>
-                    <select name="" id="memoryProfileSelect">
-                        <option value="">-- Selectionner un memory --</option>
-                        <option value="dinosaures">Dinosaures</option>
-                        <option value="dinosauresAvecNom">Dinosaures avec nom</option>
-                        <option value="legumes">Legumes</option>
-                        <option value="animaux">Animaux</option>
-                        <option value="chiens">Chiens</option>
-                        <option value="animauxDomestiques">Animaux domestiques</option>
-                        <option value="animauxAnimes">Animaux animes</option>
-                        <option value="alphabetScrabble">Alphabet - scrable</option>
-                    </select>
-                    <div class="center">
-                        <img src="" alt="" id="memoryProfileImg">
+                    <p><b>Nom d'utilisateur</b></p>
+                    <p id="profilUsername"></p><hr>
+                    <p><b>Email</b></p>
+                    <p id="profilEmail"></p><hr>
+                    <div class="profilSelectBtn">
+                        <p><b>Choix du Memory</b></p>
+                        <select name="memoryProfileSelect" id="memoryProfileSelect">
+                            <option value="">-- Selectionner un memory --</option>
+                            <option value="dinosaures">Dinosaures</option>
+                            <option value="dinosauresAvecNom">Dinosaures avec nom</option>
+                            <option value="legumes">Legumes</option>
+                            <option value="animaux">Animaux</option>
+                            <option value="chiens">Chiens</option>
+                            <option value="animauxDomestiques">Animaux domestiques</option>
+                            <option value="animauxAnimes">Animaux animes</option>
+                            <option value="alphabetScrabble">Alphabet - scrable</option>
+                        </select>
+                        <div class="center">
+                            <img src="" alt="" id="memoryProfileImg">
+                        </div>
+                        <p><b>Taille du Memory</b></p>
+                        <select name="memorySizeSelect" id="memorySizeSelect">
+                            <option value="">-- Veuillez selectionner une taille --</option>
+                            <!-- JavaScript -->
+                        </select>
+                        <button type="button" id="logout">Se déconnecter</button>
                     </div>
-                    <p>Taille du Memory</p>
-                    <select name="" id="">
-                        <option value="">-- Selectionner une taille --</option>
-                        <option value="">4 * 4</option>
-                        <option value="">4 * 5</option>
-                        <option value="">5 * 5</option>
-                    </select>
-                    <button type="button" id="logout">Se déconnecter</button>
                 </fieldset>
             </div>
         </main>

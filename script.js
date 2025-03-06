@@ -94,6 +94,51 @@ $(document).ready(function() {
     $('#memoryProfileSelect').on('change', function() {
         let val = $(this).val();
         $('#memoryProfileImg').attr('src', `assets/images/${val}/memory_detail_${val}.png`);
+        localStorage.setItem('memorySelected', val);
+
+        // Ajouter la taille du memory dans le select en fonction de l'image selectionné
+        let select = $('#memorySizeSelect');
+        select.empty();
+        select.append("<option value=''>-- Veuillez selectionner une taille --</option>")
+        let opt2x5 = $("<option value='2x5'>2 x 5</option>");
+        let opt4x4 = $("<option value='4x4'>4 x 4</option>");
+        let opt4x5 = $("<option value='4x5'>4 x 5</option>");
+        let opt4x6 = $("<option value='4x6'>4 x 6</option>");
+        
+        switch (val) {
+            case 'dinosaures':
+                select.append(opt2x5, opt4x4, opt4x5);
+                break;
+            case 'dinosauresAvecNom':
+                select.append(opt2x5, opt4x4, opt4x5);
+                break;
+            case 'animauxDomestiques':
+                select.append(opt2x5, opt4x4, opt4x5);
+                break;
+            case 'animauxAnimes':
+                select.append(opt2x5, opt4x4);
+                break;
+            case 'legumes':
+                select.append(opt2x5);
+                break;
+            case 'animaux':
+                select.append(opt2x5, opt4x4, opt4x5, opt4x6);
+                break;
+            case 'chiens':
+                select.append(opt2x5, opt4x4, opt4x5);
+                break;
+            case 'alphabetScrabble':
+                select.append(opt2x5, opt4x4, opt4x5, opt4x6);
+                break;
+            default:
+                break;
+        }
+    });
+
+    // Ajout de la taille du memory dans le localStorage via le select dans profil
+    $('#memorySizeSelect').on('change', function() {
+        let val = $(this).val();
+        localStorage.setItem('memorySize', val);
     });
 
 });
