@@ -6,6 +6,7 @@ $(document).ready(function() {
     if (currentUser) {
         $('#profilUsername').text(currentUser.username);
         $('#profilEmail').text(currentUser.email);
+        loadHistory(currentUser);
     } else {
         $('#profilUsername').text('...');
         $('#profilEmail').text('...');
@@ -141,6 +142,12 @@ $(document).ready(function() {
         localStorage.setItem('memorySize', val);
     });
 
+    // Ajout de la taille du memory dans le localStorage pour le ranking
+    $('#memoryRankingSelect').on('change', function() {
+        let val = $(this).val();
+        localStorage.setItem('rankingMemorySize', val);
+        loadRanking();
+    });
 });
 
 function login(email, password) {
@@ -148,16 +155,19 @@ function login(email, password) {
         // Récupère la clé à l'index i dans le localSotrage
         let key = localStorage.key(i);
 
-        // Prend le user lié à la clé
-        let user = JSON.parse(localStorage.getItem(key));
+        try {
+            // Prend le user lié à la clé
+            let user = JSON.parse(localStorage.getItem(key));
 
-        if (user.email === email && user.password === password) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            window.location.href = 'profile.html';
-            return true;
+            if (user.email === email && user.password === password) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'profile.html';
+                return true;
+            }
+        } catch (e) {
+            continue;
         }
     }
-
     return false;
 }
 
@@ -166,11 +176,16 @@ function findUserByUsername(username) {
         // Récupère la clé à l'index i dans le localSotrage
         let key = localStorage.key(i);
 
-        // Prend le user lié à la clé
-        let user = JSON.parse(localStorage.getItem(key));
+        // Try catch pour éviter les problème lié au objets user et les chaines de caractère dans le localStorage
+        try {
+            // Prend le user lié à la clé
+            let user = JSON.parse(localStorage.getItem(key));
 
-        if (user.username === username) {
-            return true;
+            if(user.username === username) {
+                return true;
+            }
+        } catch (e) {
+            continue;
         }
     }
     return false;
@@ -181,12 +196,16 @@ function findUserByEmail(email) {
         // Récupère la clé à l'index i dans le localSotrage
         let key = localStorage.key(i);
 
-        // Prend le user lié à la clé
-        let user = JSON.parse(localStorage.getItem(key));
+        try {
+           // Prend le user lié à la clé
+            let user = JSON.parse(localStorage.getItem(key));
 
-        if (user.email === email) {
-            foundUser = user;
-            return true;
+            if (user.email === email) {
+                foundUser = user;
+                return true;
+            } 
+        } catch (e) {
+            continue;
         }
     }
     return false;
@@ -222,4 +241,73 @@ function validatePassword(password) {
 function updateValidationIcon(imgId, isValid) {
     let icon = isValid ? 'assets/images/check.svg' : 'assets/images/error.svg';
     $(imgId).attr('src', icon);
+}
+
+// Charger l'historique du joueur dans le tableau du profil
+function loadHistory(currentUser) {
+    for (let i = 0; i < localStorage.length; i++) {
+
+        let scores = JSON.parse(localStorage.getItem(`score${i}`));
+        let table = $('#history');
+
+        if (scores && scores.username === currentUser.username) {
+            let tr = $('<tr></tr>');
+            let tdScore = $(`<td>${scores.score}</td>`);
+            let tdSize = $(`<td>${scores.size}</td>`);
+            let tdMemory = $(`<td>${scores.memory}</td>`);
+            let tdDate = $(`<td>${scores.date}</td>`);
+
+            tr.append(tdScore);
+            tr.append(tdSize);
+            tr.append(tdMemory);
+            tr.append(tdDate);
+            table.append(tr);
+        }
+    }    
+}
+
+// Charger le classement des joueurs en fonction de la taille selectionné
+function loadRanking() {
+    let memorySize = localStorage.getItem('rankingMemorySize');
+
+    if (!memorySize) return;
+
+    let scoresArray = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+        if (memorySize) {
+            let scoreData = JSON.parse(localStorage.getItem(`score${i}`));
+            
+            // Si les tailles de memory correspondent je le met dans le tableau des scores
+            if (scoreData && scoreData.size == memorySize) {
+                scoresArray.push(scoreData);
+            }
+        }
+    }
+
+    // Trie des scores par score croissant
+    scoresArray.sort((a, b) => a.score - b.score);
+
+    // Prend les 5 premiers
+    let topScores = scoresArray.slice(0, 5);
+    
+    let table = $('#ranking');
+    // Comme table.empty(); mais en gardant la première tr (pseudo, score ...)
+    $('#ranking tr:not(:first)').remove();
+
+    topScores.forEach((scores) => {
+        let tr = $('<tr></tr>');
+        let tdUsername = $(`<td>${scores.username}</td>`);
+        let tdScore = $(`<td>${scores.score}</td>`);
+        let tdSize = $(`<td>${scores.size}</td>`);
+        let tdMemory = $(`<td>${scores.memory}</td>`);
+        let tdDate = $(`<td>${scores.date}</td>`);
+
+        tr.append(tdUsername);
+        tr.append(tdScore);
+        tr.append(tdSize);
+        tr.append(tdMemory);
+        tr.append(tdDate);
+        table.append(tr);
+    }); 
 }

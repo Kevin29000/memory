@@ -38,7 +38,7 @@ $(document).ready(function() {
         table.css('border', '2px solid black');
         
         // Vérifie que le nombre d'images disponible est supérieur au nombre d'images demandés
-        if (nbImage >= images.length) {
+        if (nbImage > images.length) {
             alert('Vous devez choisir une taille de memory adéquat');
             return false;
         }
@@ -102,6 +102,7 @@ $(document).ready(function() {
                     firstClick = secondClick = null;
                     score++;
                     $('#gameScore').text(`Score : ${score}`);
+                    checkGameOver(score);
                 } else {
                     // Pas trouvé, les cartes se cachent
                     firstClick.find('img').attr('src', questionImgSrc);
@@ -113,6 +114,39 @@ $(document).ready(function() {
                 lockBoard = false;
             }, 1000);
         }
-    });
-    
+    });    
 });
+
+function checkGameOver(score) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    let nbQuestionImg = $('#gameTable td img').filter(function() {
+        return $(this).attr('src') === 'assets/images/question.svg';
+    }).length;
+
+    let scoreId = localStorage.getItem('scoreId');
+
+    if (!scoreId) {
+        scoreId = 1;
+    } else {
+        scoreId++;
+    }
+
+    date = new Date();
+    let formattedDate = date.getDate().toString().padStart(2, '0') + '/' +
+                        (date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                        date.getFullYear();
+
+    if (nbQuestionImg == 0 && currentUser) {
+        console.log('GameOver');
+        let scoreHistory = {
+            username: currentUser.username,
+            score: score,
+            size: localStorage.getItem('memorySize'),
+            memory: localStorage.getItem('memorySelected'),
+            date: formattedDate
+        }
+        localStorage.setItem(`score${scoreId}`, JSON.stringify(scoreHistory));
+        localStorage.setItem('scoreId', scoreId);
+    }
+}

@@ -22,39 +22,53 @@
         </header>
         <main>
             <div class="container">
-                <fieldset class="profile">
-                    <h1>Profil</h1>
-                    <div class="center">
-                        <img src="assets/images/question.svg" alt="" class="imgProfilQuestion">
-                    </div>
-                    <p><b>Nom d'utilisateur</b></p>
-                    <p id="profilUsername"></p><hr>
-                    <p><b>Email</b></p>
-                    <p id="profilEmail"></p><hr>
-                    <div class="profilSelectBtn">
-                        <p><b>Choix du Memory</b></p>
-                        <select name="memoryProfileSelect" id="memoryProfileSelect">
-                            <option value="">-- Selectionner un memory --</option>
-                            <option value="dinosaures">Dinosaures</option>
-                            <option value="dinosauresAvecNom">Dinosaures avec nom</option>
-                            <option value="legumes">Legumes</option>
-                            <option value="animaux">Animaux</option>
-                            <option value="chiens">Chiens</option>
-                            <option value="animauxDomestiques">Animaux domestiques</option>
-                            <option value="animauxAnimes">Animaux animes</option>
-                            <option value="alphabetScrabble">Alphabet - scrable</option>
-                        </select>
+                <div class="profileCenter">
+                    <fieldset class="profile">
+                        <h1>Profil</h1>
                         <div class="center">
-                            <img src="" alt="" id="memoryProfileImg">
+                            <img src="assets/images/question.svg" alt="" class="imgProfilQuestion">
                         </div>
-                        <p><b>Taille du Memory</b></p>
-                        <select name="memorySizeSelect" id="memorySizeSelect">
-                            <option value="">-- Veuillez selectionner une taille --</option>
-                            <!-- JavaScript -->
-                        </select>
-                        <button type="button" id="logout">Se déconnecter</button>
-                    </div>
-                </fieldset>
+                        <p><b>Nom d'utilisateur</b></p>
+                        <p id="profilUsername"></p><hr>
+                        <p><b>Email</b></p>
+                        <p id="profilEmail"></p><hr>
+                        <div class="profilSelectBtn">
+                            <p><b>Choix du Memory</b></p>
+                            <select name="memoryProfileSelect" id="memoryProfileSelect">
+                                <option value="">-- Selectionner un memory --</option>
+                                <option value="dinosaures">Dinosaures</option>
+                                <option value="dinosauresAvecNom">Dinosaures avec nom</option>
+                                <option value="legumes">Legumes</option>
+                                <option value="animaux">Animaux</option>
+                                <option value="chiens">Chiens</option>
+                                <option value="animauxDomestiques">Animaux domestiques</option>
+                                <option value="animauxAnimes">Animaux animes</option>
+                                <option value="alphabetScrabble">Alphabet - scrable</option>
+                            </select>
+                            <div class="center">
+                                <img src="" alt="" id="memoryProfileImg">
+                            </div>
+                            <p><b>Taille du Memory</b></p>
+                            <select name="memorySizeSelect" id="memorySizeSelect">
+                                <option value="">-- Veuillez selectionner une taille --</option>
+                                <!-- JavaScript -->
+                            </select>
+                            <button type="button" id="logout">Se déconnecter</button>
+                        </div>
+                    </fieldset>
+    
+                    <h2>Mes dernières parties</h2>
+                    <table id="history">
+                        <tr>
+                            <!-- <td>Pseudo</td> -->
+                            <td>Score</td>
+                            <td>Taille</td>
+                            <td>Memory</td>
+                            <td>Date</td>
+                        </tr>
+                        <!-- JavaScript -->
+                    </table>
+                </div>
             </div>
         </main>
     </body>
